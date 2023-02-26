@@ -1,41 +1,79 @@
 using System.Drawing;
 using _2DGame.Data;
+using Microsoft.VisualBasic.ApplicationServices;
+using static System.Formats.Asn1.AsnWriter;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace _2DGame
 {
     public partial class Form1 : Form
     {
-        Image Car;
         bool moveRight, moveLeft;
-        int posY = 550, posX = 400;
-        int speed = 20;
+        int speed = 20, enmspeed;
         int sizeh = 200, sizew = 200;
-        public Bitmap Enemycar = Resource1.NPCcar,
-                      Usercar = Resource1.USERcar;
+        bool gameOver = true;
+        int amount_enm = 0;
+        Random rand = new Random();
+        List<PictureBox> enemys = new List<PictureBox>();
+        
 
         public Form1()
         {
             InitializeComponent();
-
             this.BackgroundImage = Resource1.Backroad;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            Car = Resource1.USERcar;
         }
 
+        private void MakeEnemys()
+        {
+            PictureBox newEnemy = new PictureBox();
+            newEnemy.Height = 200;
+            newEnemy.Width = 200;
+            newEnemy.Image = Resource1.NPCcar;
+            newEnemy.Tag = "Enemy";
+
+            int x = rand.Next(30, 800);
+            int y = 12;
+            newEnemy.Location = new Point(x, y);
+
+            enemys.Add(newEnemy);
+            this.Controls.Add(newEnemy);
+
+            amount_enm++;
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        private void Enemy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void KeyisDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Left) {
-                moveLeft= true;
+            if (e.KeyCode == Keys.Left) {
+                moveLeft = true;
             }
-            else if(e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right)
             {
-                moveRight= true;
+                moveRight = true;
             }
         }
 
@@ -45,40 +83,59 @@ namespace _2DGame
             {
                 moveLeft = false;
             }
-            else if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right)
             {
                 moveRight = false;
             }
+           
         }
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            if (moveLeft && posX > 0)
+            if (amount_enm <= 4)
             {
-                posX -= speed;
+                MakeEnemys();
             }
-            if (moveRight && posX > 0)
+            if (moveLeft == true && player.Left > 0)
             {
-                posX += speed;
+                player.Left -= speed;
             }
-            this.Invalidate();
-        }
+            if (moveRight == true && player.Left > 0)
+            {
+                player.Left += speed;
+            }
 
+
+            this.Invalidate();
+
+            foreach (Control x in this.Controls)
+            {
+
+                if (x is PictureBox && (string)x.Tag == "Enemy")
+                {
+                   
+
+                    if (player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        timer1.Stop();
+                        gameOver = true;
+                    }
+                }
+
+                if (x is PictureBox && (string)x.Tag == "border")
+                {
+
+                    if (pictureBox.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        pictureBox.Refresh();
+                    }
+                }
+            }
+        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics Canvas = e.Graphics;
-
-            Canvas.DrawImage(Car, posX, posY, sizew, sizeh);
-
-            
-            
-            //g.DrawImage(Enemycar,new Rectangle(500,0,200,200));
-           // g.DrawImage(Usercar, new Rectangle(700,560,200,200));
-           
-
-
-            
 
         }
-    }
+       
+    } 
 }
