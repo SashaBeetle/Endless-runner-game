@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.player = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.BORDER = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BORDER)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -54,33 +55,35 @@
             this.player.TabStop = false;
             this.player.Tag = "MainCar";
             // 
-            // pictureBox4
+            // BORDER
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(12, 991);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(994, 33);
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Tag = "border";
+            this.BORDER.Location = new System.Drawing.Point(12, 991);
+            this.BORDER.Name = "BORDER";
+            this.BORDER.Size = new System.Drawing.Size(994, 33);
+            this.BORDER.TabIndex = 5;
+            this.BORDER.TabStop = false;
+            this.BORDER.Tag = "border";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_2DGame.Resource1.Backroad;
-            this.ClientSize = new System.Drawing.Size(1027, 1055);
-            this.Controls.Add(this.pictureBox4);
+            this.ClientSize = new System.Drawing.Size(1027, 801);
+            this.Controls.Add(this.BORDER);
             this.Controls.Add(this.player);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Endless-Car-Game";
+            this.TransparencyKey = System.Drawing.Color.Transparent;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.RightToLeftChanged += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyisDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BORDER)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -89,6 +92,6 @@
 
         private System.Windows.Forms.Timer timer1;
         private PictureBox player;
-        private PictureBox pictureBox4;
+        private PictureBox BORDER;
     }
 }

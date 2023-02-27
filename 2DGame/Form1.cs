@@ -46,6 +46,7 @@ namespace _2DGame
             if (pos == 1) { x = 85; } else if (pos == 2) { x = 330; } else if (pos == 3) { x = 600; } else if(pos == 4) { x = 850; }
            
             
+
             int y = 12;
             newEnemy.Location = new Point(x, y);
 
@@ -119,7 +120,7 @@ namespace _2DGame
             }
             foreach(PictureBox en in enemys.ToList())
             {
-                if (Bounds.IntersectsWith(en.Bounds))
+                if (BORDER.Bounds.IntersectsWith(en.Bounds))
                 {
                     enemys.Remove(en);
                     this.Controls.Remove(en);
