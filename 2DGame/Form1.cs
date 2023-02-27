@@ -1,18 +1,3 @@
-using System.Drawing;
-using _2DGame.Data;
-using Microsoft.VisualBasic.ApplicationServices;
-using static System.Formats.Asn1.AsnWriter;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
-
 namespace _2DGame
 {
     public partial class Form1 : Form
@@ -20,12 +5,14 @@ namespace _2DGame
         bool moveRight, moveLeft;
         int speed = 20, enmspeed = 1, score = 0;
         bool gameOver = true;
-        int amount_enm = 0;
-        int amount_signL = 0, amount_signR = 0;
+        int amount_signL = 0, amount_signR = 0, amount_enm = 0, amount_star = 0;
         Random rand = new Random();
         List<PictureBox> enemys = new List<PictureBox>();
         List<PictureBox> marksL = new List<PictureBox>();
         List<PictureBox> marksR = new List<PictureBox>();
+        List<PictureBox> stars = new List<PictureBox>();
+
+
 
 
 
@@ -34,12 +21,28 @@ namespace _2DGame
 
         public Form1()
         {
-            
+
             InitializeComponent();
             this.BackgroundImage = Resource1.Background;
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
+        private void makeStar()
+        {
+            PictureBox newStar = new PictureBox();
+            newStar.Image = Resource1.Star;
+            newStar.Height = 100;
+            newStar.Width = 100;
+            newStar.Tag = "Star";
 
+            this.Controls.Add(newStar);
+            stars.Add(newStar);
+
+            int x = 0;
+            int pos = rand.Next(1, 5);
+            if (pos == 1) { x = 90; } else if (pos == 2) { x = 360; } else if (pos == 3) { x = 650; } else if (pos == 4) { x = 917; }
+            newStar.Location = new Point(x, -400);
+
+        }
         private void makeMarkL()
         {
             PictureBox newMarkl = new PictureBox();
@@ -47,7 +50,7 @@ namespace _2DGame
             newMarkl.Width = 10;
             newMarkl.BackColor = Color.WhiteSmoke;
             newMarkl.Tag = "Marking";
-            newMarkl.Location= new Point(270, -70);
+            newMarkl.Location = new Point(270, -70);
             newMarkl.SendToBack();
             this.Controls.Add(newMarkl);
             marksL.Add(newMarkl);
@@ -74,13 +77,12 @@ namespace _2DGame
             newEnemy.Image = Resource1.NPCcar;
             newEnemy.Tag = "Enemy";
             newEnemy.BringToFront();
-            int x=0;
-            
 
-            int pos = rand.Next(1,5);
-            if (pos == 1) { x = 90; } else if (pos == 2) { x = 360; } else if (pos == 3) { x = 650; } else if(pos == 4) { x = 917; }
-           
-            
+            int x = 0;
+            int pos = rand.Next(1, 5);
+            if (pos == 1) { x = 90; } else if (pos == 2) { x = 360; } else if (pos == 3) { x = 650; } else if (pos == 4) { x = 917; }
+
+
 
             int y = -400;
             newEnemy.Location = new Point(x, y);
@@ -92,13 +94,14 @@ namespace _2DGame
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
         }
 
 
         private void KeyisDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left) {
+            if (e.KeyCode == Keys.Left)
+            {
                 moveLeft = true;
             }
             if (e.KeyCode == Keys.Right)
@@ -118,26 +121,36 @@ namespace _2DGame
             {
                 moveRight = false;
             }
-           
+
         }
 
-      
+
 
         private void BORDER_Click(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void Star_Timer_Tick(object sender, EventArgs e)
+        {
+
+            makeStar();
+
+        }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
 
-           
+
+
             foreach (Control x in this.Controls)
             {
 
                 if (x is PictureBox && (string)x.Tag == "Marking")
+                {
+                    x.Top += speed;
+                }
+                if (x is PictureBox && (string)x.Tag == "Star")
                 {
                     x.Top += speed;
                 }
@@ -151,7 +164,7 @@ namespace _2DGame
                     this.Controls.Remove(en);
                     amount_signL--;
                 }
-                
+
             }
             foreach (PictureBox en in marksR.ToList())
             {
@@ -161,7 +174,7 @@ namespace _2DGame
                     this.Controls.Remove(en);
                     amount_signR--;
                 }
-                
+
             }
             this.Invalidate();
 
@@ -177,6 +190,7 @@ namespace _2DGame
             {
                 makeMarkR();
             }
+
         }
 
 
@@ -186,7 +200,6 @@ namespace _2DGame
             if (amount_enm <= 3)
             {
                 MakeEnemys();
-                
             }
             if (moveLeft == true && player.Left > 0)
             {
@@ -213,12 +226,21 @@ namespace _2DGame
                         gameOver = true;
                     }
                 }
+                if (x is PictureBox && (string)x.Tag == "Star")
+                {
+                    if (player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        amount_star++;
+                        starlabel.Text = "Stars: " + amount_star;
+                        score += 500;
+                    }
+                }
 
-          
-                
+
+
             }
-           
-            foreach(PictureBox en in enemys.ToList())
+
+            foreach (PictureBox en in enemys.ToList())
             {
                 if (BORDER.Bounds.IntersectsWith(en.Bounds))
                 {
@@ -227,11 +249,27 @@ namespace _2DGame
                     amount_enm--;
                 }
             }
+            foreach (PictureBox en in stars.ToList())
+            {
+                if (BORDER.Bounds.IntersectsWith(en.Bounds))
+                {
+                    stars.Remove(en);
+                    this.Controls.Remove(en);
+                }
+            }
+            foreach (PictureBox en in stars.ToList())
+            {
+                if (player.Bounds.IntersectsWith(en.Bounds))
+                {
+                    stars.Remove(en);
+                    this.Controls.Remove(en);
+                }
+            }
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
 
         }
-       
-    } 
+
+    }
 }

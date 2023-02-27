@@ -40,6 +40,8 @@
             this.BORDER_SIGN_RIGHT = new System.Windows.Forms.PictureBox();
             this.BORDER_SIGN_LEFT = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Star_Timer = new System.Windows.Forms.Timer(this.components);
+            this.starlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BORDER)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BORDER2)).BeginInit();
@@ -132,12 +134,31 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Score:";
             // 
+            // Star_Timer
+            // 
+            this.Star_Timer.Enabled = true;
+            this.Star_Timer.Interval = 40000;
+            this.Star_Timer.Tick += new System.EventHandler(this.Star_Timer_Tick);
+            // 
+            // starlabel
+            // 
+            this.starlabel.AutoSize = true;
+            this.starlabel.BackColor = System.Drawing.Color.Transparent;
+            this.starlabel.Font = new System.Drawing.Font("Constantia", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.starlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.starlabel.Location = new System.Drawing.Point(966, 22);
+            this.starlabel.Name = "starlabel";
+            this.starlabel.Size = new System.Drawing.Size(73, 28);
+            this.starlabel.TabIndex = 11;
+            this.starlabel.Text = "Stars:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_2DGame.Resource1.Backroad;
             this.ClientSize = new System.Drawing.Size(1103, 848);
+            this.Controls.Add(this.starlabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BORDER_SIGN_LEFT);
             this.Controls.Add(this.BORDER_SIGN_RIGHT);
@@ -178,5 +199,7 @@
         private PictureBox BORDER_SIGN_RIGHT;
         private PictureBox BORDER_SIGN_LEFT;
         private Label label1;
+        private System.Windows.Forms.Timer Star_Timer;
+        private Label starlabel;
     }
 }
