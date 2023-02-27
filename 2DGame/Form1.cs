@@ -18,8 +18,7 @@ namespace _2DGame
     public partial class Form1 : Form
     {
         bool moveRight, moveLeft;
-        int speed = 20, enmspeed;
-        int sizeh = 200, sizew = 200;
+        int speed = 20, enmspeed = 1;
         bool gameOver = true;
         int amount_enm = 0;
         Random rand = new Random();
@@ -37,17 +36,21 @@ namespace _2DGame
         {
             PictureBox newEnemy = new PictureBox();
             newEnemy.Height = 200;
-            newEnemy.Width = 200;
+            newEnemy.Width = 100;
             newEnemy.Image = Resource1.NPCcar;
             newEnemy.Tag = "Enemy";
+            int x=0;
+            
 
-            int x = rand.Next(30, 800);
+            int pos = rand.Next(1,4);
+            if (pos == 1) { x = 85; } else if (pos == 2) { x = 330; } else if (pos == 3) { x = 600; } else if(pos == 4) { x = 850; }
+           
+            
             int y = 12;
             newEnemy.Location = new Point(x, y);
 
             enemys.Add(newEnemy);
             this.Controls.Add(newEnemy);
-
             amount_enm++;
         }
 
@@ -56,15 +59,6 @@ namespace _2DGame
 
         }
 
-        private void Enemy_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void KeyisDown(object sender, KeyEventArgs e)
         {
@@ -76,6 +70,7 @@ namespace _2DGame
                 moveRight = true;
             }
         }
+
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -92,7 +87,7 @@ namespace _2DGame
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            if (amount_enm <= 4)
+            if (amount_enm <= 3)
             {
                 MakeEnemys();
             }
@@ -113,7 +108,7 @@ namespace _2DGame
 
                 if (x is PictureBox && (string)x.Tag == "Enemy")
                 {
-                   
+                    x.Top += speed;
 
                     if (player.Bounds.IntersectsWith(x.Bounds))
                     {
@@ -121,14 +116,14 @@ namespace _2DGame
                         gameOver = true;
                     }
                 }
-
-                if (x is PictureBox && (string)x.Tag == "border")
+            }
+            foreach(PictureBox en in enemys.ToList())
+            {
+                if (Bounds.IntersectsWith(en.Bounds))
                 {
-
-                    if (pictureBox.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        pictureBox.Refresh();
-                    }
+                    enemys.Remove(en);
+                    this.Controls.Remove(en);
+                    amount_enm--;
                 }
             }
         }
