@@ -33,7 +33,7 @@ namespace _2DGame
             newStar.Height = 100;
             newStar.Width = 100;
             newStar.Tag = "Star";
-
+            newStar.BackColor = Color.Transparent;
             this.Controls.Add(newStar);
             stars.Add(newStar);
 
@@ -77,6 +77,7 @@ namespace _2DGame
             newEnemy.Image = Resource1.NPCcar;
             newEnemy.Tag = "Enemy";
             newEnemy.BringToFront();
+            newEnemy.BackColor = Color.Transparent;
 
             int x = 0;
             int pos = rand.Next(1, 5);
