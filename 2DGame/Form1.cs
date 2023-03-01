@@ -3,10 +3,11 @@ using System;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 
-namespace _2DGame  // The game was made by
-                   // Oleksandr Zhuk(https://github.com/SashaBeetle),
-                   // Oleksandr Zakala(https://github.com/Rovikido),
-                   // Synytskyi Vitalii(https://github.com/VitaliySynytskyi);
+namespace _2DGame  /* The game was made by
+                      Oleksandr Zhuk(https://github.com/SashaBeetle),
+                      Oleksandr Zakala(https://github.com/Rovikido),
+                      Synytskyi Vitalii(https://github.com/VitaliySynytskyi);
+                   */
 {
     public partial class Form1 : Form
     {
