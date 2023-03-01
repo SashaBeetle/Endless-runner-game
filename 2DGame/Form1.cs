@@ -46,7 +46,7 @@ namespace _2DGame
         private void makeMarkL()
         {
             PictureBox newMarkl = new PictureBox();
-            newMarkl.Height = 90;
+            newMarkl.Height = 100;
             newMarkl.Width = 10;
             newMarkl.BackColor = Color.WhiteSmoke;
             newMarkl.Tag = "Marking";
@@ -59,7 +59,7 @@ namespace _2DGame
         private void makeMarkR()
         {
             PictureBox newMarkR = new PictureBox();
-            newMarkR.Height = 90;
+            newMarkR.Height = 100;
             newMarkR.Width = 10;
             newMarkR.BackColor = Color.WhiteSmoke;
             newMarkR.Tag = "Marking";
