@@ -313,7 +313,7 @@ namespace _2DGame
 
         private void game_over_picturebox_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.Restart();
         }
     }
 }
