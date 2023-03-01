@@ -3,10 +3,14 @@ using System;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 
-namespace _2DGame
+namespace _2DGame  // The game was made by
+                   // Oleksandr Zhuk(https://github.com/SashaBeetle),
+                   // Oleksandr Zakala(https://github.com/Rovikido),
+                   // Synytskyi Vitalii(https://github.com/VitaliySynytskyi);
 {
     public partial class Form1 : Form
     {
+        //all variables 
         bool moveRight, moveLeft;
         int speed = 20, score = 0;
         float difficulty = 1f;
@@ -19,30 +23,36 @@ namespace _2DGame
         List<PictureBox> stars = new List<PictureBox>();
         IDictionary<PictureBox, int> enemy_speed = new Dictionary<PictureBox, int>();
         List<Image> carSprites = new List<Image>();
-
         List<int> spawn_positions = new List<int>() { 90, 320, 570, 780 };
+        System.Media.SoundPlayer music = new System.Media.SoundPlayer();
+        System.Media.SoundPlayer crash = new System.Media.SoundPlayer();
+
+
 
 
         //utility variables
         Random rnd = new Random();
         int frame_count = 0, prev_enemy_spawn = 0;
 
-
+        //Form(Window)
         public Form1()
         {
             InitializeComponent();
 
+            //Add resources
             carSprites.Add(Resource1.NPCcar1);
             carSprites.Add(Resource1.NPCcar2);
             carSprites.Add(Resource1.NPCcar3);
             carSprites.Add(Resource1.NPCcar4);
             carSprites.Add(Resource1.NPCcar5);
 
-            //var g = this.CreateGraphics();
-
             this.BackgroundImage = Resource1.Background;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            music.SoundLocation = "KADILAK.wav";
+            crash.SoundLocation = "CRASH.wav";
+            music.Play();
         }
+        //Making stars
         private void makeStar()
         {
             PictureBox newStar = new PictureBox();
@@ -58,6 +68,7 @@ namespace _2DGame
             newStar.Location = new Point(spawn_positions[pos], -400);
 
         }
+        //Making left road marking
         private void makeMarkL()
         {
             PictureBox newMarkl = new PictureBox();
@@ -71,6 +82,7 @@ namespace _2DGame
             marksL.Add(newMarkl);
             amount_signL++;
         }
+        //Making right road marking
         private void makeMarkR()
         {
             PictureBox newMarkR = new PictureBox();
@@ -84,6 +96,7 @@ namespace _2DGame
             marksR.Add(newMarkR);
             amount_signR++;
         }
+        //Making Enemys 
         private void MakeEnemys()
         {
             PictureBox newEnemy = new PictureBox();
@@ -113,13 +126,7 @@ namespace _2DGame
             this.Controls.Add(newEnemy);
             amount_enm++;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+        //Actions when key is Down
         private void KeyisDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -131,9 +138,9 @@ namespace _2DGame
                 moveRight = true;
             }
         }
+        //Actions when key is Up
 
-
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void KeyisUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
@@ -143,10 +150,13 @@ namespace _2DGame
             {
                 moveRight = false;
             }
-
         }
+
+        //Making crash-window
         private void GameOver()
         {
+            crash.Play();
+
             gameOver = true;
 
             game_over_picturebox.Visible = true;
@@ -159,20 +169,12 @@ namespace _2DGame
             label1.Left = 405;
             label1.BringToFront();
         }
-
-
-        private void BORDER_Click(object sender, EventArgs e)
+        //Timer for music
+        private void MusicPlayer_Tick(object sender, EventArgs e)
         {
-
+            music.Play();
         }
-
-        private void Star_Timer_Tick(object sender, EventArgs e)
-        {
-            if (gameOver) { return; }
-            makeStar();
-
-        }
-
+        //Timer for speed(Stars and Road Marking) and Borders
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (gameOver) { return; }
@@ -213,8 +215,22 @@ namespace _2DGame
             this.Invalidate();
 
         }
+        
 
-        private void timer3_Tick(object sender, EventArgs e)
+        //Refresh after game over
+        private void game_over_picturebox_Click_1(object sender, EventArgs e)
+        {
+            Application.Restart();
+
+        }
+        //Timer for making stars
+        private void Star_Timer_Tick_1(object sender, EventArgs e)
+        {
+            if (gameOver) { return; }
+            makeStar();
+        }
+        //Timer for making Left and Right road Marking
+        private void timer3_Tick_1(object sender, EventArgs e)
         {
             if (gameOver) { return; }
             if (amount_signL <= 6)
@@ -225,11 +241,9 @@ namespace _2DGame
             {
                 makeMarkR();
             }
-
         }
-
-
-        private void timer1_Tick_1(object sender, EventArgs e)
+        //Main timer in Solutions
+        private void timer1_Tick(object sender, EventArgs e)
         {
             if (gameOver) { return; }
             score++;
@@ -305,15 +319,6 @@ namespace _2DGame
                     this.Controls.Remove(en);
                 }
             }
-        }
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void game_over_picturebox_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
+        } 
     }
 }
