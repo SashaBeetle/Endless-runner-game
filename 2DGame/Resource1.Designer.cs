@@ -22,7 +22,7 @@ namespace _2DGame {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource1 {
+    public class Resource1 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace _2DGame {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("_2DGame.Resource1", typeof(Resource1).Assembly);
@@ -51,7 +51,7 @@ namespace _2DGame {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Background {
+        public static System.Drawing.Bitmap Background {
             get {
                 object obj = ResourceManager.GetObject("Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Backroad {
+        public static System.Drawing.Bitmap Backroad {
             get {
                 object obj = ResourceManager.GetObject("Backroad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream CRASH {
+        public static System.IO.UnmanagedMemoryStream CRASH {
             get {
                 return ResourceManager.GetStream("CRASH", resourceCulture);
             }
@@ -92,7 +92,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap game_over {
+        public static System.Drawing.Bitmap game_over {
             get {
                 object obj = ResourceManager.GetObject("game_over", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -102,7 +102,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream KADILAK {
+        public static System.IO.UnmanagedMemoryStream KADILAK {
             get {
                 return ResourceManager.GetStream("KADILAK", resourceCulture);
             }
@@ -111,7 +111,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar {
+        public static System.Drawing.Bitmap NPCcar {
             get {
                 object obj = ResourceManager.GetObject("NPCcar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -121,7 +121,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar1 {
+        public static System.Drawing.Bitmap NPCcar1 {
             get {
                 object obj = ResourceManager.GetObject("NPCcar1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -131,7 +131,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar2 {
+        public static System.Drawing.Bitmap NPCcar2 {
             get {
                 object obj = ResourceManager.GetObject("NPCcar2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -141,7 +141,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar3 {
+        public static System.Drawing.Bitmap NPCcar3 {
             get {
                 object obj = ResourceManager.GetObject("NPCcar3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -151,7 +151,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar4 {
+        public static System.Drawing.Bitmap NPCcar4 {
             get {
                 object obj = ResourceManager.GetObject("NPCcar4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -161,7 +161,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NPCcar5 {
+        public static System.Drawing.Bitmap NPCcar5 {
             get {
                 object obj = ResourceManager.GetObject("NPCcar5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -171,7 +171,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap playerCar {
+        public static System.Drawing.Bitmap playerCar {
             get {
                 object obj = ResourceManager.GetObject("playerCar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -181,7 +181,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Star {
+        public static System.Drawing.Bitmap Star {
             get {
                 object obj = ResourceManager.GetObject("Star", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -191,7 +191,7 @@ namespace _2DGame {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap USERcar {
+        public static System.Drawing.Bitmap USERcar {
             get {
                 object obj = ResourceManager.GetObject("USERcar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
