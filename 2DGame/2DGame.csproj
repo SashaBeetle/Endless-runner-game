@@ -10,17 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\net7.0-windows\KADILAK.wav" />
+    <EmbeddedResource Update="Resource1.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <None Include="bin\Debug\net7.0-windows\CRASH.wav" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resource1.resx">
-      <Generator></Generator>
-    </EmbeddedResource>
+    <None Include="bin\Debug\net7.0-windows\KADILAK.wav" />
   </ItemGroup>
 
 </Project>
