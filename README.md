@@ -2,7 +2,7 @@
 2DGame
 
  This is a little game I made together with my friends.
- Since this is a small project, you will not see it here Object-oriented programming, Frameworks and other.
+ Since this is a small project, you will not see it here popular frameworks and other.
  We divided the tasks as follows:
 
 #### Oleksandr Zakala [Git](https://github.com/Rovikido)
